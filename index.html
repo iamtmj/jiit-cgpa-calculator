@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            font-weight: 600;
+            color: #2a5298;
+            text-align: center;
+        }
+        .card p {
+            color: #555;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+        input:focus {
+            border-color: #2a5298;
+            outline: none;
+        }
+        button {
+            background: #2a5298;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #1e3c72;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a5298;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>SGPA Calculator</h2>
+        <p>Enter your current SGPA and target CGPA to calculate the required SGPA.</p>
+        <div class="input-container">
+            <input type="number" id="sgpa1" placeholder="Enter your current SGPA" step="0.01">
+            <input type="number" id="target" placeholder="Enter your target CGPA" step="0.01">
+            <button onclick="calculateSGPA()">Calculate Required SGPA</button>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateSGPA() {
+            let sgpa1 = parseFloat(document.getElementById('sgpa1').value);
+            let target = parseFloat(document.getElementById('target').value);
+            
+            if (isNaN(sgpa1) || isNaN(target)) {
+                document.getElementById('result').innerText = "Please enter valid numbers";
+                return;
+            }
+            
+            let requiredSGPA = (target - (0.548 * sgpa1)) / 0.452;
+            document.getElementById('result').innerText = "Required SGPA: " + requiredSGPA.toFixed(2);
+        }
+    </script>
+</body>
+</html>
