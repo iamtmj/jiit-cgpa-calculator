@@ -4,144 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGPA Calculator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #f0f4f8;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        .card {
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        .card h2 {
-            font-weight: 500;
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .card p {
-            color: #555;
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            transition: background 0.3s ease;
-            margin-top: 20px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-        .impossible {
-            color: #d9534f; /* Bootstrap's danger color */
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #777;
-            text-align: center;
-            font-style: italic;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="card">
-        <h2>Required SGPA Calculator</h2>
-        <p>Enter your current SGPA and target CGPA to calculate the required SGPA.</p>
-        <div class="input-container">
-            <input type="number" id="sgpa1" placeholder="Enter your current SGPA" step="0.01">
-            <input type="number" id="target" placeholder="Enter your target CGPA" step="0.01">
-            <button onclick="calculateSGPA()">Calculate Required SGPA</button>
+    <div class="container">
+        <h1>SGPA Calculator</h1>
+        
+        <div class="theory-subjects">
+            <h2>Theory Subjects (100 Marks Each)</h2>
+            
+            <div class="subject-block">
+                <h3>Mathematics-2 (4 Credits)</h3>
+                <div class="marks-input">
+                    <input type="number" id="math-t1" placeholder="T1 (20)" max="20">
+                    <input type="number" id="math-t2" placeholder="T2 (20)" max="20">
+                    <input type="number" id="math-t3" placeholder="T3 (35)" max="35">
+                    <input type="number" id="math-internal" placeholder="Internal (25)" max="25">
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h3>SDF-2 (4 Credits)</h3>
+                <div class="marks-input">
+                    <input type="number" id="sdf-t1" placeholder="T1 (20)" max="20">
+                    <input type="number" id="sdf-t2" placeholder="T2 (20)" max="20">
+                    <input type="number" id="sdf-t3" placeholder="T3 (35)" max="35">
+                    <input type="number" id="sdf-internal" placeholder="Internal (25)" max="25">
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h3>Physics-2 (4 Credits)</h3>
+                <div class="marks-input">
+                    <input type="number" id="physics-t1" placeholder="T1 (20)" max="20">
+                    <input type="number" id="physics-t2" placeholder="T2 (20)" max="20">
+                    <input type="number" id="physics-t3" placeholder="T3 (35)" max="35">
+                    <input type="number" id="physics-internal" placeholder="Internal (25)" max="25">
+                </div>
+            </div>
         </div>
-        <p id="result"></p>
+
+        <div class="practical-subjects">
+            <h2>Practical Subjects</h2>
+            
+            <div class="subject-block">
+                <h3>UHV (3 Credits)</h3>
+                <div class="marks-input">
+                    <input type="number" id="uhv-mid" placeholder="Mid Term (30)" max="30">
+                    <input type="number" id="uhv-end" placeholder="End Term (30)" max="30">
+                    <input type="number" id="uhv-internal" placeholder="Internal (40)" max="40">
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h3>Engineering Drawing (1.5 Credits)</h3>
+                <div class="marks-input">
+                    <input type="number" id="ed-mid" placeholder="Mid Term (20)" max="20">
+                    <input type="number" id="ed-end" placeholder="End Term (20)" max="20">
+                    <input type="number" id="ed-internal" placeholder="Internal (60)" max="60">
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h3>Physics Lab (1 Credit)</h3>
+                <div class="marks-input">
+                    <input type="number" id="plab-mid" placeholder="Mid Term (20)" max="20">
+                    <input type="number" id="plab-end" placeholder="End Term (20)" max="20">
+                    <input type="number" id="plab-internal" placeholder="Internal (60)" max="60">
+                </div>
+            </div>
+
+            <div class="subject-block">
+                <h3>SDF Lab (1 Credit)</h3>
+                <div class="marks-input">
+                    <input type="number" id="sdflab-mid" placeholder="Mid Term (20)" max="20">
+                    <input type="number" id="sdflab-end" placeholder="End Term (20)" max="20">
+                    <input type="number" id="sdflab-internal" placeholder="Internal (60)" max="60">
+                </div>
+            </div>
+        </div>
+
+        <button onclick="calculateSGPA()" class="calculate-btn">Calculate SGPA</button>
+
+        <div class="cgpa-section">
+            <h2>CGPA Calculator</h2>
+            <div class="cgpa-inputs">
+                <div class="input-group">
+                    <label for="sgpa1">Semester 1 SGPA:</label>
+                    <input type="number" id="sgpa1" placeholder="Enter SGPA" min="0" max="10" step="0.01">
+                </div>
+            </div>
+            <button onclick="calculateCGPA()" class="calculate-btn">Calculate Final CGPA</button>
+            <div id="cgpa-result" class="cgpa-result"></div>
+        </div>
+
+        <div id="result" class="result-section">
+            <h2>Results</h2>
+            <div id="subject-results"></div>
+            <div id="sgpa-result"></div>
+        </div>
     </div>
-    <footer>
-        Developed by <strong>Manan Jindal</strong>
-    </footer>
-    <script>
-        function calculateSGPA() {
-            let sgpa1 = parseFloat(document.getElementById('sgpa1').value);
-            let target = parseFloat(document.getElementById('target').value);
-            let resultElement = document.getElementById('result');
-            
-            if (isNaN(sgpa1) || isNaN(target)) {
-                resultElement.innerText = "Please enter valid numbers";
-                resultElement.style.color = "#333";
-                resultElement.classList.remove('impossible');
-                return;
-            }
-            
-            let requiredSGPA = (target - (0.548 * sgpa1)) / 0.452;
-            
-            if (requiredSGPA > 10) {
-                resultElement.innerText = "Impossible";
-                resultElement.classList.add('impossible');
-            } else {
-                resultElement.innerText = "Required SGPA: " + requiredSGPA.toFixed(2);
-                resultElement.style.color = "#333";
-                resultElement.classList.remove('impossible');
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
